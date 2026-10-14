@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asisten Belajar Offline</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Minimalist Desktop Window Container -->
+  <div class="desktop-window" id="app-window">
+    
+    <!-- Dark Blue Header with Traffic Lights & URL Pill -->
+    <header class="window-header">
+      <div class="window-dots" aria-label="Window Controls">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <div class="window-address-pill" id="window-address-bar">
+        file:///C:/BahanP13/asisten_belajar.html
+      </div>
+    </header>
+
+    <!-- Window Body Layout -->
+    <div class="window-body">
+      
+      <!-- Left Sidebar: Modules List -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-title" id="sidebar-module-count">10 MODUL TERSEDIA</span>
+          <button type="button" class="btn-icon-load" id="btn-load-folder" title="Muat Folder atau File Materi Tambahan">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              <line x1="12" y1="11" x2="12" y2="17"></line>
+              <line x1="9" y1="14" x2="15" y2="14"></line>
+            </svg>
+          </button>
+          <!-- Hidden input fallback for local file loading -->
+          <input type="file" id="folder-input-fallback" webkitdirectory directory multiple style="display: none;" accept=".txt,.md,.json,.csv,.html">
+        </div>
+
+        <ul class="sidebar-modules-list" id="sidebar-modules-list">
+          <!-- Dynamically populated by app.js -->
+        </ul>
+      </aside>
+
+      <!-- Right Main Content Area -->
+      <main class="main-content">
+        
+        <!-- Two Primary Tabs: AI Chatbot & Generator Kuis -->
+        <nav class="tabs-bar" role="tablist">
+          <button type="button" class="tab-btn tab-active" id="tab-btn-chatbot" role="tab" aria-selected="true">
+            <span class="tab-icon icon-chat">&#x1f4ac;</span>
+            <span>AI Chatbot</span>
+          </button>
+          <button type="button" class="tab-btn" id="tab-btn-quiz" role="tab" aria-selected="false">
+            <span class="tab-icon icon-quiz">?</span>
+            <span>Generator Kuis</span>
+          </button>
+        </nav>
+
+        <!-- Panel 1: AI Chatbot -->
+        <section class="tab-panel" id="panel-chatbot" role="tabpanel">
+          <div class="chat-container">
+            <!-- Scrollable Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+              <!-- Dynamically populated by chatbot.js -->
+            </div>
+
+            <!-- Chat Input Bar -->
+            <div class="chat-input-bar">
+              <input 
+                type="text" 
+                class="chat-input" 
+                id="chat-input" 
+                placeholder="Apa itu renin dan apa bedanya dengan pepsin?" 
+                autocomplete="off"
+              >
+              <button type="button" class="btn-chat btn-kirim" id="btn-send-chat">Kirim</button>
+              <button type="button" class="btn-chat btn-rangkum" id="btn-summary-chat">Rangkum</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 2: Generator Kuis -->
+        <section class="tab-panel tab-panel-hidden" id="panel-quiz" role="tabpanel">
+          <div class="quiz-container" id="quiz-container">
+            <!-- Dynamically populated by quiz.js -->
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts in dependency order (Offline Vanilla JS) -->
+  <script src="modules-data.js"></script>
+  <script src="utils.js"></script>
+  <script src="storage.js"></script>
+  <script src="search-engine.js"></script>
+  <script src="module-loader.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="quiz.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
